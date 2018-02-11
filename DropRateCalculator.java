@@ -37,7 +37,7 @@ public class DropRateCalculator {
         red = 0;
         unidentified = 0;
 
-        //set the output
+        //set the output. I don't think this will create the file, so you have have a text file already set up. You can name it whatever you want, as long as you change the path here.
         try {
             System.setOut(new PrintStream(Paths.get("C:\\Users\\Alex\\Desktop\\Memes\\Screenshots\\results.txt").toFile())); //your path goes here
             System.out.println("System output:");
@@ -61,11 +61,13 @@ public class DropRateCalculator {
         for (int i = 0; i < 10000; i++) {
             if (i != 0) {
                 BufferedImage image = cs.getScreenshot();
-                try {
-                    ImageIO.write(image, "png", new java.io.File("C:\\Users\\Alex\\Desktop\\Memes\\Screenshots\\Screenshot_1.png"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                
+        // Left this in by accident. Was for debugging, but will leave it commented for now. You can use the image it produces to check the pixel coordinates of the rarity icons.
+        //        try {
+        //            ImageIO.write(image, "png", new java.io.File("C:\\Users\\Alex\\Desktop\\Memes\\Screenshots\\Screenshot_1.png"));
+        //        } catch (IOException e) {
+        //            e.printStackTrace();
+        //        }
                 tallyResults(image);
             }
 
@@ -74,7 +76,7 @@ public class DropRateCalculator {
             try {
                 bot = new Robot();
                 int mask = InputEvent.BUTTON1_MASK;
-                bot.mouseMove(960, 960);
+                bot.mouseMove(960, 960); //you might have to play with these coordinates so they line up with the button in the game.
                 bot.mousePress(mask);
                 bot.mouseRelease(mask);
                 Thread.sleep(300);
@@ -85,7 +87,7 @@ public class DropRateCalculator {
             }
 
 
-            //wait for next round of items
+            //wait for next round of items.
             try {
                 Thread.sleep(7000);
             } catch (InterruptedException e) {
